@@ -2,86 +2,53 @@
 
 Besinova is a Flutter-based mobile application that helps users plan healthier and more budget-friendly grocery shopping by optimizing nutritional and financial goals.
 
-## ⚠️ Security Notice
+⚠️ Security Notice
 
-This project has been cleaned of exposed API keys and sensitive data. Please read the [SECURITY.md](SECURITY.md) file for important security guidelines before setting up the project.
+This project has been fully cleaned of all exposed API keys and sensitive data.
+Please review the included SECURITY.md file before setup to ensure best practices for secure configuration.
 
 🌍 Overview
+English
 
-English:
-Besinova lets you set your calorie, protein, and budget goals, then creates an optimized grocery list and meal plan tailored to your needs. It uses intelligent logic and a Python-based optimization module (originally server-driven) to find the best food combinations.
+Besinova allows users to set calorie, protein, and budget goals, then generates an optimized grocery list and meal plan tailored to their needs.
+It was originally connected to a Python-based optimization service and a web scraper that collected and filtered around 17,000 food entries based on specific nutritional and price constraints.
 
-Türkçe:
-Besinova, kalori, protein ve bütçe hedeflerinizi girmenize olanak tanır ve ihtiyaçlarınıza özel optimize edilmiş market listesi ile yemek planı oluşturur. Akıllı algoritmalar ve Python tabanlı bir optimizasyon modülü (başlangıçta sunucu destekli) kullanır.
+Currently, the backend is offline, but the app remains fully functional in demo mode, ideal for portfolio presentation.
+
+Türkçe
+
+Besinova, kullanıcıların kalori, protein ve bütçe hedeflerine göre optimize edilmiş market listeleri ve yemek planları oluşturur.
+Proje başlangıçta, yaklaşık 17.000 gıda verisini filtreleyen Python tabanlı bir optimizasyon ve scraper modülü ile çalışıyordu.
+Sunucu şu anda kapalı olsa da uygulama demo modunda sorunsuz şekilde incelenebilir.
 
 🔐 Login & Demo Mode
+The original Firebase authentication system has been removed.
+Instead, a “Skip Login / Continue as Guest” option allows anyone to explore the app without a backend connection.
 
-Originally, Besinova used Firebase for authentication.
-Since the Firebase project is now deactivated, the login screen has been updated with a “Skip Login / Continue as Guest” option.
-This allows anyone reviewing the app on GitHub to explore all features without any backend connection.
-
-Note: No data is collected, stored, or transmitted. The demo mode exists only to make the app reviewable.
-
+💡 No user data is collected, stored, or transmitted.
 ⚙️ Optimization System Status
-
-The optimization feature was designed to communicate with a Python backend (shopping_optimizer_v2.py).
-Because this backend server is currently offline, optimization results are not fetched from a live source.
-However, the app structure, logic, and UI remain intact — perfectly suitable for portfolio and demonstration purposes.
-
-If the server is restored later, the app will automatically perform real optimization again.
+Optimization logic was designed around a Python backend (shopping_optimizer_v2.py) and a scraper that processed ~17,000 food items.
+These services are currently offline, so live optimization is disabled.
+However, local optimization logic and demo mode remain active for demonstration.
 
 💡 Key Features
 
-Smart grocery list generation
-
-Nutritional and budget-aware planning
-
-Clean, modern Flutter UI with animations
-
-Local state and theme management (Provider)
-
-Demo mode support for offline exploration
+🛒 Smart grocery list generation
+🍽️ Nutrition & budget-aware meal planning
+🎨 Clean Flutter UI with smooth animation
+🧠 Local & Provider-based state management
+🚀 Demo mode for offline exploration
 
 🧭 How to Use
-
 Launch the app.
-
-On the login screen, press “Skip Login” to continue in demo mode.
-
-Set basic health or budget goals.
-
-View your optimized grocery plan and meal suggestions.
-
-💻 Tech Stack
-
-Frontend: Flutter (Dart)
-
-State Management: Provider
-
-Theme Support: Manual dark/light toggle
-
-Backend (optional): Python optimization service (currently offline)
+On the login screen, press “Skip Login.”
+Enter your calorie, protein, or budget goals.
+View your optimized grocery plan and nutrition summary.
 
 📂 Project Status
 
-Firebase has been completely removed.
-
-Optimization backend is offline.
-
-The app runs fully in demo mode, ready for portfolio use.
-
-All UI and logic are fully functional and production-ready.
-
-🧾 For Recruiters / Reviewers
-
-This repository demonstrates:
-
-Strong understanding of Flutter architecture
-
-Real-world UI/UX design capability
-
-Integration of backend optimization logic
-
-Modular and scalable code structure
-
-The app is intentionally presented without Firebase or server dependencies to ensure full transparency and ease of review.
+✅ Firebase removed
+✅ API keys sanitized
+✅ Demo mode fully functional
+⚙️ Backend & scraper offline (optional to reactivate)
+🎯 Ready for portfolio, presentation, or review
