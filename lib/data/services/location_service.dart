@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
-import '../../core/constants/api_keys.dart';
+import '../../core/config/app_config.dart';
 
 /// Service for handling location-based market finding
 class LocationService {
-  static const String _apiKey = ApiKeys.googlePlacesApiKey;
-  static const String _placesBaseUrl = 'https://maps.googleapis.com/maps/api/place';
-  
+  static const String _apiKey = AppConfig.googlePlacesApiKey;
+  static const String _placesBaseUrl =
+      'https://maps.googleapis.com/maps/api/place';
+
   // Timeout constants
   static const Duration _locationTimeout = Duration(seconds: 10);
   static const Duration _networkTimeout = Duration(seconds: 15);
@@ -65,24 +66,22 @@ class LocationService {
     double radius = 5000, // 5km radius
   }) async {
     try {
-      final url = Uri.parse(
-        '$_placesBaseUrl/nearbysearch/json?'
-        'location=$latitude,$longitude&'
-        'radius=$radius&'
-        'type=supermarket&'
-        'key=$_apiKey'
-      );
+      final url = Uri.parse('$_placesBaseUrl/nearbysearch/json?'
+          'location=$latitude,$longitude&'
+          'radius=$radius&'
+          'type=supermarket&'
+          'key=$_apiKey');
 
       print('Searching for markets near: $latitude, $longitude');
-      
+
       final response = await http.get(url).timeout(_networkTimeout);
-      
+
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        
+
         if (data['status'] == 'OK') {
           final results = data['results'] as List;
-          
+
           return results.map((place) => MarketInfo.fromJson(place)).toList();
         } else {
           print('Places API error: ${data['status']}');
@@ -111,25 +110,25 @@ class LocationService {
   }) async {
     try {
       // Search for the specific market instead of all markets
-      final query = marketName.isNotEmpty ? marketName : 'supermarket grocery store';
-      final url = Uri.parse(
-        '$_placesBaseUrl/textsearch/json?'
-        'query=$query&'
-        'location=$latitude,$longitude&'
-        'radius=$radius&'
-        'key=$_apiKey'
-      );
+      final query =
+          marketName.isNotEmpty ? marketName : 'supermarket grocery store';
+      final url = Uri.parse('$_placesBaseUrl/textsearch/json?'
+          'query=$query&'
+          'location=$latitude,$longitude&'
+          'radius=$radius&'
+          'key=$_apiKey');
 
-      print('Searching for specific market: $marketName for product: $productName');
-      
+      print(
+          'Searching for specific market: $marketName for product: $productName');
+
       final response = await http.get(url).timeout(_networkTimeout);
-      
+
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        
+
         if (data['status'] == 'OK') {
           final results = data['results'] as List;
-          
+
           return results.map((place) => MarketInfo.fromJson(place)).toList();
         } else {
           print('Places API error: ${data['status']}');
@@ -220,7 +219,7 @@ class MarketInfo {
   factory MarketInfo.fromJson(Map<String, dynamic> json) {
     final geometry = json['geometry'] as Map<String, dynamic>;
     final location = geometry['location'] as Map<String, dynamic>;
-    
+
     return MarketInfo(
       id: json['place_id'] ?? '',
       name: json['name'] ?? '',
@@ -242,7 +241,7 @@ class MarketInfo {
         lat2: latitude,
         lon2: longitude,
       );
-      
+
       return MarketInfo(
         id: id,
         name: name,
@@ -280,7 +279,7 @@ class MarketInfo {
         lat2: latitude,
         lon2: longitude,
       );
-      
+
       return MarketInfo(
         id: id,
         name: name,
@@ -319,4 +318,4 @@ class MarketInfo {
   String get directionsUrl {
     return 'https://www.google.com/maps/dir/?api=1&destination=$latitude,$longitude';
   }
-} 
+}

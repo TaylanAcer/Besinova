@@ -2,6 +2,10 @@
 
 Besinova is a Flutter-based mobile application that helps users plan healthier and more budget-friendly grocery shopping by optimizing nutritional and financial goals.
 
+## ⚠️ Security Notice
+
+This project has been cleaned of exposed API keys and sensitive data. Please read the [SECURITY.md](SECURITY.md) file for important security guidelines before setting up the project.
+
 🌍 Overview
 
 English:
